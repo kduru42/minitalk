@@ -1,42 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kduru <kduru@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 02:24:07 by kduru             #+#    #+#             */
-/*   Updated: 2023/04/04 02:25:36 by kduru            ###   ########.fr       */
+/*   Created: 2023/04/04 01:49:10 by kduru             #+#    #+#             */
+/*   Updated: 2023/04/04 02:14:38 by kduru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minitalk.h"
+#include "../inc/minitalk_bonus.h"
 
-void	signal_handler(int signal)
+void	send_bits(int pid, char c)
 {
-	static int	byte;
-	static int	bit;
+	int	count;
 
-	if (signal == SIGUSR1)
-		byte |= 1 << (7 - bit);
-	bit++;
-	if (bit == 8)
+	count = 7;
+	while (count >= 0)
 	{
-		ft_printf("%c", byte);
-		bit = 0;
-		byte = 0;
+		if ((c >> count) & 1)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		usleep(100);
+		count--;
 	}
 }
 
-int	main(void)
+int	main(int argc, char **arg)
 {
-	int	pid;
+	int	i;
 
-	pid = getpid();
-	ft_printf("%d\n", pid);
-	signal(SIGUSR1, signal_handler);
-	signal(SIGUSR2, signal_handler);
-	while (1)
-		pause();
+	i = 0;
+	if (argc != 3)
+	{
+		ft_printf("Invalid argument\n");
+		return (1);
+	}
+	while (arg[2][i])
+	{
+		send_bits(ft_atoi(arg[1]), ft_strlen(arg[2][i]), arg[2][i]);
+		i++;
+	}
 	return (0);
 }

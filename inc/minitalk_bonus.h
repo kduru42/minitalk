@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kduru <kduru@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 01:48:10 by kduru             #+#    #+#             */
-/*   Updated: 2023/04/04 02:29:31 by kduru            ###   ########.fr       */
+/*   Created: 2023/04/04 01:38:32 by kduru             #+#    #+#             */
+/*   Updated: 2023/04/04 02:28:35 by kduru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
 # include "../ft_printf/ft_printf.h"
 # include <signal.h>
