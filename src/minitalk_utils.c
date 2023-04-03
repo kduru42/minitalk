@@ -1,5 +1,21 @@
 #include "../inc/minitalk.h"
 
+void init_counts(t_cts *cs)
+{
+	cs->client_count = 0;
+	cs->server_count = 0;
+}
+
+int ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)

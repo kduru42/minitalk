@@ -4,15 +4,15 @@ void send_bits(int pid, char c)
 {
     int count;
 
-    count = 0;
-    while (count < 8)
+    count = 7;
+    while (count >= 0)
     {
-        if (c << count & 1)
+        if ((c >> count) & 1)
             kill (pid, SIGUSR1);
         else
             kill (pid, SIGUSR2);
         usleep(100);
-        count++;
+        count--;
     }
 }
 
@@ -28,9 +28,8 @@ int main(int argc, char **arg)
     }
     while (arg[2][i])
     {
-        send_bits(ft_atoi(arg[1]), arg[2][i]);
+        send_bits(ft_atoi(arg[1]), ft_strlen(arg[2][i]), arg[2][i]);
         i++;
     }
-    send_bits(ft_atoi(arg[1]), '\n');
     return (0);
 }

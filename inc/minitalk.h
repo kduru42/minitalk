@@ -4,6 +4,12 @@
 #include "../ft_printf/ft_printf.h"
 #include <signal.h>
 
+typedef struct Counts
+{
+    int client_count;
+    int server_count;
+} t_cts;
+
 void send_bits(int pid, char c);
 void signal_handler(int signal);
 int	ft_isdigit(int c);
