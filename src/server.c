@@ -19,7 +19,6 @@ void signal_handler(int signal)
         bit = 0;
         byte = 0;
     }
-    if (length = )
 }
 
 int main()
